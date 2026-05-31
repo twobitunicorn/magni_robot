@@ -12,7 +12,7 @@ from controllers import FollowController
 
 
 def main() -> None:
-    model, data = magni_sim.load()
+    model, data = magni_sim.load(magni_sim.SCENE_FOLLOW_PATH)
     controller = FollowController(target_body="human_c")  # no duration -> runs forever
     magni_sim.run_viewer(model, data, controller)
 

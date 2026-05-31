@@ -9,6 +9,7 @@ import mujoco
 
 HERE = Path(__file__).parent
 SCENE_PATH = str(HERE / "scene.xml")
+SCENE_FOLLOW_PATH = str(HERE / "scene_follow.xml")
 
 WHEEL_RADIUS = 0.1     # m, drive wheel
 TRACK_WIDTH = 0.326    # m, lateral distance between drive wheels (2 * 0.163)
@@ -16,9 +17,9 @@ TRACK_WIDTH = 0.326    # m, lateral distance between drive wheels (2 * 0.163)
 CAMERA_DEFAULTS = dict(distance=7.5, azimuth=114, elevation=-36, lookat=(0, 0, 0.3))
 
 
-def load() -> tuple[mujoco.MjModel, mujoco.MjData]:
-    """Load scene.xml and reset to the 'home' keyframe."""
-    model = mujoco.MjModel.from_xml_path(SCENE_PATH)
+def load(scene_path: str = SCENE_PATH) -> tuple[mujoco.MjModel, mujoco.MjData]:
+    """Load a scene file and reset to the 'home' keyframe."""
+    model = mujoco.MjModel.from_xml_path(scene_path)
     data = mujoco.MjData(model)
     mujoco.mj_resetDataKeyframe(model, data, 0)
     return model, data
@@ -42,27 +43,38 @@ def mocap_index(model: mujoco.MjModel, body_name: str) -> int:
     return model.body_mocapid[body_id]
 
 
-def human_ids(model: mujoco.MjModel) -> dict[str, int]:
-    return {name: mocap_index(model, name) for name in ("human_a", "human_b", "human_c")}
-
-
 HUMAN_C_RADIUS = 1.2
 HUMAN_C_PERIOD = 25.0
 
+# Scripted path for each known human, keyed by body name. update_humans applies
+# only those entries whose body actually exists in the loaded scene, so the
+# basic scene (no human_c) and scene_follow (with human_c) both work.
+HUMAN_PATHS = {
+    "human_a": lambda t: [3.0, 2.0 * math.sin(t * 2 * math.pi / 12), 0.9],
+    "human_b": lambda t: [2.5 * math.sin(t * 2 * math.pi / 10), 1.5, 0.9],
+    "human_c": lambda t: [
+        HUMAN_C_RADIUS * math.cos(t * 2 * math.pi / HUMAN_C_PERIOD),
+        HUMAN_C_RADIUS * math.sin(t * 2 * math.pi / HUMAN_C_PERIOD),
+        0.9,
+    ],
+}
+
+
+def human_ids(model: mujoco.MjModel) -> dict[str, int]:
+    """Return mocap indices for every HUMAN_PATHS name actually present in the model."""
+    ids: dict[str, int] = {}
+    for name in HUMAN_PATHS:
+        body_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, name)
+        if body_id != -1:
+            ids[name] = model.body_mocapid[body_id]
+    return ids
+
 
 def update_humans(model: mujoco.MjModel, data: mujoco.MjData, mocap_ids: dict[str, int]) -> None:
-    """Move the three mocap 'humans' along scripted paths."""
+    """Move every human in `mocap_ids` along its scripted path."""
     t = data.time
-    # Sinusoidal pacers (background actors)
-    data.mocap_pos[mocap_ids["human_a"]] = [3.0, 2.0 * math.sin(t * 2 * math.pi / 12), 0.9]
-    data.mocap_pos[mocap_ids["human_b"]] = [2.5 * math.sin(t * 2 * math.pi / 10), 1.5, 0.9]
-    # Circling follow target
-    angle = t * 2 * math.pi / HUMAN_C_PERIOD
-    data.mocap_pos[mocap_ids["human_c"]] = [
-        HUMAN_C_RADIUS * math.cos(angle),
-        HUMAN_C_RADIUS * math.sin(angle),
-        0.9,
-    ]
+    for name, mid in mocap_ids.items():
+        data.mocap_pos[mid] = HUMAN_PATHS[name](t)
 
 
 def apply_camera_defaults(cam) -> None:

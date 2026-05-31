@@ -10,3 +10,4 @@ wheels/
 .vscode/
 # Virtual environments
 .venv
+.python-version

@@ -73,10 +73,11 @@ def test_cmd_vel_pure_turn():
 
 
 def test_follow_controller_chases_target():
-    """Robot should close on human_c within ~5 s."""
+    """Robot should close on human_c within ~5 s. Uses scene_follow which includes human_c."""
     from controllers import FollowController
-    model, data = magni_sim.load()
+    model, data = magni_sim.load(magni_sim.SCENE_FOLLOW_PATH)
     mocap_ids = magni_sim.human_ids(model)
+    assert "human_c" in mocap_ids
     ctrl = FollowController(target_body="human_c")
     initial_dist = None
     for _ in range(2500):  # 5 s
