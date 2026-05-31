@@ -10,7 +10,8 @@
             <geom group="3" />
         </default>
         <default class="wheel">
-            <joint type="hinge" axis="1 0 0" damping="0.1" />
+            <joint type="hinge" axis="1 0 0" damping="0.1"
+                armature="0.005" frictionloss="0.05" />
         </default>
     </default>
 
@@ -228,6 +229,11 @@
         <velocity name="left_wheel"  joint="left_wheel_joint"  kv="10" ctrlrange="-10 10" />
         <velocity name="right_wheel" joint="right_wheel_joint" kv="10" ctrlrange="-10 10" />
     </actuator>
+
+    <keyframe>
+        <key name="home"
+            qpos="0 0 0.0998  1 0 0 0  0 0  0 0  0 0" />
+    </keyframe>
 
     <sensor>
         <gyro          name="imu_gyro"        site="imu" />
