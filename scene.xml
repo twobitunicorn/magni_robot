@@ -1,7 +1,7 @@
 <mujoco model="scene">
   <include file="magni.xml" />
 
-  <statistic center="0 0 0.05" extent="0.25" />
+  <statistic center="0 0 0.3" extent="6" />
 
   <visual>
     <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0" />
@@ -22,6 +22,18 @@
   <worldbody>
     <light pos="0 0 3.5" dir="0 0 -1" directional="true" />
     <geom name="floor" size="0 0 0.05" pos="0 0 0" type="plane" material="groundplane" />
+
+    <geom name="obstacle"   type="box"      pos="1.5 0 0.5"     size="0.15 0.15 0.5"  rgba="0.8 0.4 0.2 1" />
+    <geom name="column"     type="cylinder" pos="-1.5 -1 0.6"   size="0.2 0.6"        rgba="0.5 0.5 0.6 1" />
+    <geom name="crate"      type="box"      pos="2 2 0.2"       size="0.3 0.3 0.2"    rgba="0.45 0.30 0.18 1" />
+    <geom name="wall_south" type="box"      pos="0 -2 0.4"      size="3 0.1 0.4"      rgba="0.6 0.55 0.5 1" />
+
+    <body name="human_a" mocap="true" pos="3 -2 0.9">
+      <geom type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.18" rgba="0.85 0.65 0.5 1" />
+    </body>
+    <body name="human_b" mocap="true" pos="-2.5 1.5 0.9">
+      <geom type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.18" rgba="0.5 0.7 0.85 1" />
+    </body>
 
     <camera name="overhead" pos="0 0 3" xyaxes="1 0 0 0 1 0" mode="fixed" />
     <camera name="follow"   pos="-1.5 -1.5 1.2" mode="targetbody" target="base" />
