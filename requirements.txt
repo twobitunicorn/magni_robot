@@ -1,0 +1,6 @@
+mujoco>=3.0
+imageio>=2.30
+pillow>=10.0
+
+# Development
+pytest>=7.0

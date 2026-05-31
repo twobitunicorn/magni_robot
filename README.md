@@ -2,40 +2,67 @@
 
 A MuJoCo model of the [Ubiquity Robotics Magni](https://www.ubiquityrobotics.com/) differential-drive base.
 
-![Demo](demo.gif)
+<table>
+<tr>
+<td><img src="demo.gif" alt="Open-loop"/></td>
+<td><img src="demo_closed_loop.gif" alt="Closed-loop"/></td>
+</tr>
+<tr>
+<td align="center"><sub><b>Open-loop</b> — timed <code>(v, w)</code> commands. The walking humans bump the robot off course and it never recovers.</sub></td>
+<td align="center"><sub><b>Closed-loop</b> — P controller on heading, re-aiming at each waypoint every step. Bumps still happen, but the robot steers back to the goal.</sub></td>
+</tr>
+</table>
 
-*Open-loop square pattern with two scripted mocap "humans" and a few obstacles. The humans bump the robot, which is why the open-loop plan drifts off course. Playback is 2x sim time.*
+Both GIFs are at 2x sim speed.
 
-## Files
+## Install
 
-- `magni.xml` — robot model: bodies, joints, actuators, contact rules, sensors.
-- `scene.xml` — simulation scene: floor, lighting, skybox, obstacles, mocap humans. Includes `magni.xml`.
-- `demo.py` — drives the robot in a square via a `cmd_vel`-style helper and paces the humans.
-- `record.py` — renders `demo.py`'s plan headlessly to `demo.gif`.
-- `assets/parts/` — STL meshes (per-color splits used by the visual geoms).
-- `assets/*.stl` — original whole-body STLs (kept for reference; not loaded).
+```sh
+pip install -r requirements.txt
+```
 
 ## Run
 
 ```sh
-# Interactive viewer with the demo plan (macOS uses mjpython for the GUI loop):
-mjpython demo.py
+# Interactive viewer (macOS uses mjpython for the GUI loop; Linux uses python):
+mjpython demo.py                 # open-loop square
+mjpython demo_closed_loop.py     # closed-loop square
 
-# Or just open the scene in the standalone viewer:
+# Open the scene in the standalone viewer with no controller:
 python -m mujoco.viewer --mjcf scene.xml
 
-# Re-record the GIF after changes:
+# Re-render both GIFs after changes to the model or controllers:
 python record.py
+
+# Run the model sanity tests:
+pytest tests/
 ```
+
+## Files
+
+- `magni.xml` — robot model: bodies, joints, actuators, contact rules, sensors, keyframe.
+- `scene.xml` — simulation scene: floor, lighting, obstacles, mocap humans, named cameras.
+- `magni_sim.py` — shared helpers: model loading, IK, sensors, viewer/renderer loops.
+- `controllers.py` — `OpenLoopController` and `ClosedLoopController`.
+- `demo.py`, `demo_closed_loop.py` — interactive viewer entrypoints.
+- `record.py` — renders both demos headlessly to GIFs.
+- `tests/test_model.py` — pytest sanity checks (compile, actuators, sensors, basic dynamics).
+- `assets/parts/` — STL meshes (per-color splits used by the visual geoms).
+- `assets/*.stl` — original whole-body STLs (kept for reference; not loaded).
 
 ## Model summary
 
-- 1 free-joint base + 2 hinge wheel joints
-- 2 velocity actuators (`left_wheel`, `right_wheel`, `ctrlrange=[-10, 10]` rad/s)
+- 1 free-joint base + 2 hinge drive wheels + 2 swivel-and-roll caster pairs
+- 2 velocity actuators (`left_wheel`, `right_wheel`, `ctrlrange=[-10, 10]` rad/s, `armature=0.005`, `frictionloss=0.05`)
 - Collision: cylinder per drive wheel, low-friction sphere per caster, box for chassis
 - Sensors: IMU (gyro, accel, framepos, framequat), wheel pos/vel, five HC-SR04 rangefinders
+- `home` keyframe loads the robot already at rest on the floor
 
 ## Frames
 
 - Forward: +x. Left: +y. Up: +z.
 - Base ride height: z = 0.1 m.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
