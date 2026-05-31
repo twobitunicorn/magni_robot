@@ -19,26 +19,37 @@ All GIFs are at 2x sim speed.
 
 ## Install
 
+With [`uv`](https://github.com/astral-sh/uv) (recommended — `uv.lock` is committed for reproducible installs):
+
+```sh
+uv sync               # creates .venv with locked deps
+uv sync --group dev   # also install pytest
+```
+
+Or with plain pip:
+
 ```sh
 pip install -r requirements.txt
 ```
 
 ## Run
 
+Prefix commands with `uv run` if you used uv (it auto-uses `.venv`); otherwise activate your env first.
+
 ```sh
 # Interactive viewer (macOS uses mjpython for the GUI loop; Linux uses python):
-mjpython demo.py                 # open-loop square
-mjpython demo_closed_loop.py     # closed-loop square
-mjpython demo_follow.py          # chase the circling green human
+uv run mjpython demo.py                 # open-loop square
+uv run mjpython demo_closed_loop.py     # closed-loop square
+uv run mjpython demo_follow.py          # chase the circling green human
 
 # Open the scene in the standalone viewer with no controller:
-python -m mujoco.viewer --mjcf scene.xml
+uv run python -m mujoco.viewer --mjcf scene.xml
 
-# Re-render both GIFs after changes to the model or controllers:
-python record.py
+# Re-render all three GIFs after changes to the model or controllers:
+uv run python record.py
 
 # Run the model sanity tests:
-pytest tests/
+uv run pytest tests/
 ```
 
 ## Files
