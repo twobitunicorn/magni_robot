@@ -43,14 +43,26 @@ def mocap_index(model: mujoco.MjModel, body_name: str) -> int:
 
 
 def human_ids(model: mujoco.MjModel) -> dict[str, int]:
-    return {name: mocap_index(model, name) for name in ("human_a", "human_b")}
+    return {name: mocap_index(model, name) for name in ("human_a", "human_b", "human_c")}
+
+
+HUMAN_C_RADIUS = 1.2
+HUMAN_C_PERIOD = 25.0
 
 
 def update_humans(model: mujoco.MjModel, data: mujoco.MjData, mocap_ids: dict[str, int]) -> None:
-    """Move the two mocap 'humans' along scripted sinusoidal paths."""
+    """Move the three mocap 'humans' along scripted paths."""
     t = data.time
+    # Sinusoidal pacers (background actors)
     data.mocap_pos[mocap_ids["human_a"]] = [3.0, 2.0 * math.sin(t * 2 * math.pi / 12), 0.9]
     data.mocap_pos[mocap_ids["human_b"]] = [2.5 * math.sin(t * 2 * math.pi / 10), 1.5, 0.9]
+    # Circling follow target
+    angle = t * 2 * math.pi / HUMAN_C_PERIOD
+    data.mocap_pos[mocap_ids["human_c"]] = [
+        HUMAN_C_RADIUS * math.cos(angle),
+        HUMAN_C_RADIUS * math.sin(angle),
+        0.9,
+    ]
 
 
 def apply_camera_defaults(cam) -> None:

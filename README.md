@@ -6,14 +6,16 @@ A MuJoCo model of the [Ubiquity Robotics Magni](https://www.ubiquityrobotics.com
 <tr>
 <td><img src="demo.gif" alt="Open-loop"/></td>
 <td><img src="demo_closed_loop.gif" alt="Closed-loop"/></td>
+<td><img src="demo_follow.gif" alt="Follow"/></td>
 </tr>
 <tr>
 <td align="center"><sub><b>Open-loop</b> — timed <code>(v, w)</code> commands. The walking humans bump the robot off course and it never recovers.</sub></td>
 <td align="center"><sub><b>Closed-loop</b> — P controller on heading, re-aiming at each waypoint every step. Bumps still happen, but the robot steers back to the goal.</sub></td>
+<td align="center"><sub><b>Follow</b> — chase the green mocap human (<code>human_c</code>) circling the scene. Robot ramps speed down inside <code>SLOW_DIST</code> so it doesn't ram into them.</sub></td>
 </tr>
 </table>
 
-Both GIFs are at 2x sim speed.
+All GIFs are at 2x sim speed.
 
 ## Install
 
@@ -27,6 +29,7 @@ pip install -r requirements.txt
 # Interactive viewer (macOS uses mjpython for the GUI loop; Linux uses python):
 mjpython demo.py                 # open-loop square
 mjpython demo_closed_loop.py     # closed-loop square
+mjpython demo_follow.py          # chase the circling green human
 
 # Open the scene in the standalone viewer with no controller:
 python -m mujoco.viewer --mjcf scene.xml
@@ -43,9 +46,9 @@ pytest tests/
 - `magni.xml` — robot model: bodies, joints, actuators, contact rules, sensors, keyframe.
 - `scene.xml` — simulation scene: floor, lighting, obstacles, mocap humans, named cameras.
 - `magni_sim.py` — shared helpers: model loading, IK, sensors, viewer/renderer loops.
-- `controllers.py` — `OpenLoopController` and `ClosedLoopController`.
-- `demo.py`, `demo_closed_loop.py` — interactive viewer entrypoints.
-- `record.py` — renders both demos headlessly to GIFs.
+- `controllers.py` — `OpenLoopController`, `ClosedLoopController`, `FollowController`.
+- `demo.py`, `demo_closed_loop.py`, `demo_follow.py` — interactive viewer entrypoints.
+- `record.py` — renders all three demos headlessly to GIFs.
 - `tests/test_model.py` — pytest sanity checks (compile, actuators, sensors, basic dynamics).
 - `assets/parts/` — STL meshes (per-color splits used by the visual geoms).
 - `assets/*.stl` — original whole-body STLs (kept for reference; not loaded).

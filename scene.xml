@@ -34,6 +34,9 @@
     <body name="human_b" mocap="true" pos="-2.5 1.5 0.9">
       <geom type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.18" rgba="0.5 0.7 0.85 1" />
     </body>
+    <body name="human_c" mocap="true" pos="1.2 0 0.9">
+      <geom type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.18" rgba="0.55 0.85 0.55 1" />
+    </body>
 
     <camera name="overhead" pos="0 0 3" xyaxes="1 0 0 0 1 0" mode="fixed" />
     <camera name="follow"   pos="-1.5 -1.5 1.2" mode="targetbody" target="base" />
