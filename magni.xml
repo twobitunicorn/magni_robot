@@ -1,0 +1,239 @@
+<mujoco model="magni">
+    <compiler angle="radian" meshdir="./assets" />
+    <asset>
+        <material name="mat_202_209_238_255" rgba="0.7922 0.8196 0.9333 1.0000" />
+        <material name="mat_000_000_096_255" rgba="0.0000 0.0000 0.3765 1.0000" />
+        <material name="front_hubcap_material" rgba="0.1373 0.1373 0.1373 1.0000" />
+        <material name="front_axlecap_material" rgba="0.5020 0.5020 0.5020 1.0000" />
+        <material name="mat_015_015_022_255" rgba="0.0588 0.0588 0.0863 1.0000" />
+        <material name="mat_001_031_107_255" rgba="0.0039 0.1216 0.4196 1.0000" />
+        <material name="mat_001_033_058_255" rgba="0.0039 0.1294 0.2275 1.0000" />
+        <material name="mat_255_255_000_255" rgba="1.0000 1.0000 0.0000 1.0000" />
+        <material name="mat_255_255_255_255" rgba="1.0000 1.0000 1.0000 1.0000" />
+        <material name="mat_160_160_160_255" rgba="0.6275 0.6275 0.6275 1.0000" />
+        <material name="mat_064_064_064_255" rgba="0.2510 0.2510 0.2510 1.0000" />
+        <material name="mat_039_039_039_255" rgba="0.1529 0.1529 0.1529 1.0000" />
+        <material name="mat_089_149_218_255" rgba="0.3490 0.5843 0.8549 1.0000" />
+        <material name="mat_255_055_007_255" rgba="1.0000 0.2157 0.0275 1.0000" />
+        <material name="mat_025_025_025_255" rgba="0.0980 0.0980 0.0980 1.0000" />
+        <material name="mat_014_014_014_255" rgba="0.0549 0.0549 0.0549 1.0000" />
+        <material name="mat_064_112_191_255" rgba="0.2510 0.4392 0.7490 1.0000" />
+        <material name="mat_058_058_058_255" rgba="0.2275 0.2275 0.2275 1.0000" />
+        <material name="mat_043_043_043_255" rgba="0.1686 0.1686 0.1686 1.0000" />
+        <material name="mat_050_115_058_255" rgba="0.1961 0.4510 0.2275 1.0000" />
+        <material name="mat_031_031_031_255" rgba="0.1216 0.1216 0.1216 1.0000" />
+        <material name="mat_000_000_000_255" rgba="0.0000 0.0000 0.0000 1.0000" />
+        <material name="mat_124_060_004_255" rgba="0.4863 0.2353 0.0157 1.0000" />
+        <material name="mat_000_000_128_255" rgba="0.0000 0.0000 0.5020 1.0000" />
+        <material name="mat_170_178_196_255" rgba="0.6667 0.6980 0.7686 1.0000" />
+        <material name="mat_035_075_191_255" rgba="0.1373 0.2941 0.7490 1.0000" />
+        <material name="mat_018_018_018_255" rgba="0.0706 0.0706 0.0706 1.0000" />
+        <material name="mat_228_233_237_255" rgba="0.8941 0.9137 0.9294 1.0000" />
+        <material name="mat_077_077_077_255" rgba="0.3020 0.3020 0.3020 1.0000" />
+        <material name="mat_204_204_204_255" rgba="0.8000 0.8000 0.8000 1.0000" />
+        <mesh name="caster_wheel__0" file="parts/caster_wheel__0.stl" inertia="shell" />
+        <mesh name="caster_wheel__1" file="parts/caster_wheel__1.stl" inertia="shell" />
+        <mesh name="caster_wheel__2" file="parts/caster_wheel__2.stl" inertia="shell" />
+        <mesh name="caster_wheel__3" file="parts/caster_wheel__3.stl" inertia="shell" />
+        <mesh name="caster_wheel__4" file="parts/caster_wheel__4.stl" inertia="shell" />
+        <mesh name="caster_wheel__5" file="parts/caster_wheel__5.stl" inertia="shell" />
+        <mesh name="front_wheel__0" file="parts/front_wheel__0.stl" inertia="shell" />
+        <mesh name="front_wheel__1" file="parts/front_wheel__1.stl" inertia="shell" />
+        <mesh name="front_wheel__2" file="parts/front_wheel__2.stl" inertia="shell" />
+        <mesh name="magni_body__0" file="parts/magni_body__0.stl" inertia="shell" />
+        <mesh name="magni_body__1" file="parts/magni_body__1.stl" inertia="shell" />
+        <mesh name="magni_body__2" file="parts/magni_body__2.stl" inertia="shell" />
+        <mesh name="magni_body__3" file="parts/magni_body__3.stl" inertia="shell" />
+        <mesh name="magni_body__4" file="parts/magni_body__4.stl" inertia="shell" />
+        <mesh name="magni_shell__0" file="parts/magni_shell__0.stl" inertia="shell" />
+        <mesh name="magni_shell__1" file="parts/magni_shell__1.stl" inertia="shell" />
+        <mesh name="magni_shell__2" file="parts/magni_shell__2.stl" inertia="shell" />
+        <mesh name="magni_shell__3" file="parts/magni_shell__3.stl" inertia="shell" />
+        <mesh name="magni_shell__4" file="parts/magni_shell__4.stl" inertia="shell" />
+        <mesh name="magni_shell__5" file="parts/magni_shell__5.stl" inertia="shell" />
+        <mesh name="magni_shell__6" file="parts/magni_shell__6.stl" inertia="shell" />
+        <mesh name="magni_shell__7" file="parts/magni_shell__7.stl" inertia="shell" />
+        <mesh name="magni_shell__8" file="parts/magni_shell__8.stl" inertia="shell" />
+        <mesh name="magni_shell__9" file="parts/magni_shell__9.stl" inertia="shell" />
+        <mesh name="magni_shell__10" file="parts/magni_shell__10.stl" inertia="shell" />
+        <mesh name="magni_shell__11" file="parts/magni_shell__11.stl" inertia="shell" />
+        <mesh name="magni_shell__12" file="parts/magni_shell__12.stl" inertia="shell" />
+        <mesh name="magni_shell__13" file="parts/magni_shell__13.stl" inertia="shell" />
+        <mesh name="magni_shell__14" file="parts/magni_shell__14.stl" inertia="shell" />
+        <mesh name="magni_shell__15" file="parts/magni_shell__15.stl" inertia="shell" />
+        <mesh name="magni_shell__16" file="parts/magni_shell__16.stl" inertia="shell" />
+        <mesh name="magni_shell__17" file="parts/magni_shell__17.stl" inertia="shell" />
+        <mesh name="magni_shell__18" file="parts/magni_shell__18.stl" inertia="shell" />
+        <mesh name="magni_shell__19" file="parts/magni_shell__19.stl" inertia="shell" />
+        <mesh name="magni_shell__20" file="parts/magni_shell__20.stl" inertia="shell" />
+        <mesh name="magni_shell__21" file="parts/magni_shell__21.stl" inertia="shell" />
+        <mesh name="magni_shell__22" file="parts/magni_shell__22.stl" inertia="shell" />
+        <mesh name="magni_tower__0" file="parts/magni_tower__0.stl" inertia="shell" />
+        <mesh name="magni_tower__1" file="parts/magni_tower__1.stl" inertia="shell" />
+        <mesh name="magni_tower__2" file="parts/magni_tower__2.stl" inertia="shell" />
+        <mesh name="magni_tower__3" file="parts/magni_tower__3.stl" inertia="shell" />
+        <mesh name="magni_tower__4" file="parts/magni_tower__4.stl" inertia="shell" />
+        <mesh name="magni_tower__5" file="parts/magni_tower__5.stl" inertia="shell" />
+        <mesh name="magni_tower__6" file="parts/magni_tower__6.stl" inertia="shell" />
+        <mesh name="magni_tower__7" file="parts/magni_tower__7.stl" inertia="shell" />
+        <mesh name="magni_tower__8" file="parts/magni_tower__8.stl" inertia="shell" />
+        <mesh name="magni_tower__9" file="parts/magni_tower__9.stl" inertia="shell" />
+        <mesh name="magni_tower__10" file="parts/magni_tower__10.stl" inertia="shell" />
+        <mesh name="magni_tower__11" file="parts/magni_tower__11.stl" inertia="shell" />
+        <mesh name="magni_tower__12" file="parts/magni_tower__12.stl" inertia="shell" />
+        <mesh name="magni_tower__13" file="parts/magni_tower__13.stl" inertia="shell" />
+        <mesh name="magni_tower__14" file="parts/magni_tower__14.stl" inertia="shell" />
+        <mesh name="magni_tower__15" file="parts/magni_tower__15.stl" inertia="shell" />
+        <mesh name="magni_tower__16" file="parts/magni_tower__16.stl" inertia="shell" />
+        <mesh name="magni_tower__17" file="parts/magni_tower__17.stl" inertia="shell" />
+        <mesh name="magni_tower__18" file="parts/magni_tower__18.stl" inertia="shell" />
+        <mesh name="magni_tower__19" file="parts/magni_tower__19.stl" inertia="shell" />
+        <mesh name="magni_tower__20" file="parts/magni_tower__20.stl" inertia="shell" />
+        <mesh name="magni_tower__21" file="parts/magni_tower__21.stl" inertia="shell" />
+        <mesh name="magni_tower__22" file="parts/magni_tower__22.stl" inertia="shell" />
+        <mesh name="magni_tower__23" file="parts/magni_tower__23.stl" inertia="shell" />
+        <mesh name="magni_tower__24" file="parts/magni_tower__24.stl" inertia="shell" />
+        <mesh name="magni_tower__25" file="parts/magni_tower__25.stl" inertia="shell" />
+        <mesh name="raspi_camera__0" file="parts/raspi_camera__0.stl" inertia="shell" />
+        <mesh name="raspi_camera__1" file="parts/raspi_camera__1.stl" inertia="shell" />
+        <mesh name="raspi_camera__2" file="parts/raspi_camera__2.stl" inertia="shell" />
+        <mesh name="raspi_camera__3" file="parts/raspi_camera__3.stl" inertia="shell" />
+        <mesh name="raspi_camera__4" file="parts/raspi_camera__4.stl" inertia="shell" />
+        <mesh name="raspi_camera__5" file="parts/raspi_camera__5.stl" inertia="shell" />
+        <mesh name="raspi_camera__6" file="parts/raspi_camera__6.stl" inertia="shell" />
+        <mesh name="raspi_camera__7" file="parts/raspi_camera__7.stl" inertia="shell" />
+        <mesh name="raspi_camera__8" file="parts/raspi_camera__8.stl" inertia="shell" />
+        <mesh name="sonar_hc-sr04__0" file="parts/sonar_hc-sr04__0.stl" inertia="shell" />
+        <mesh name="sonar_hc-sr04__1" file="parts/sonar_hc-sr04__1.stl" inertia="shell" />
+        <mesh name="sonar_hc-sr04__2" file="parts/sonar_hc-sr04__2.stl" inertia="shell" />
+        <mesh name="sonar_hc-sr04__3" file="parts/sonar_hc-sr04__3.stl" inertia="shell" />
+        <mesh name="sonar_hc-sr04__4" file="parts/sonar_hc-sr04__4.stl" inertia="shell" />
+        <mesh name="ur50_lidar__0" file="parts/ur50_lidar__0.stl" inertia="shell" />
+        <mesh name="ur_c1_lidar__0" file="parts/ur_c1_lidar__0.stl" inertia="shell" />
+        <mesh name="ur_c1_lidar__1" file="parts/ur_c1_lidar__1.stl" inertia="shell" />
+        <mesh name="ur_c1_lidar__2" file="parts/ur_c1_lidar__2.stl" inertia="shell" />
+        <mesh name="ur_c1_lidar__3" file="parts/ur_c1_lidar__3.stl" inertia="shell" />
+        <mesh name="ur_c1_lidar__4" file="parts/ur_c1_lidar__4.stl" inertia="shell" />
+    </asset>
+    <worldbody>
+        <body name="base" pos="0 0 0.1">
+            <!-- <freejoint /> -->
+            <inertial pos="-0.15 0 0.03" quat="0 0.707107 0 0.707107" mass="10"
+                diaginertia="0.172704 0.150753 0.0594508" />
+            <body name="body" pos="-0.11 0 -0.029" quat="1 0 0 0">
+                <geom type="mesh" mesh="magni_body__0" material="mat_015_015_022_255" />
+                <geom type="mesh" mesh="magni_body__1" material="mat_001_031_107_255" />
+                <geom type="mesh" mesh="magni_body__2" material="mat_001_031_107_255" />
+                <geom type="mesh" mesh="magni_body__3" material="mat_001_033_058_255" />
+                <geom type="mesh" mesh="magni_body__4" material="mat_001_031_107_255" />
+            </body>
+            <body name="left_caster_wheel" pos="-0.279 0.17 -0.01" quat="0 0 0 1">
+                <geom type="mesh" mesh="caster_wheel__0" material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__1" material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__2" material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__3" material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__4" material="mat_000_000_096_255" />
+                <geom type="mesh" mesh="caster_wheel__5" material="mat_202_209_238_255" />
+            </body>
+
+            <body name="right_caster_wheel" pos="-0.279 -0.17 -0.01" quat="0 0 0 1">
+                <geom type="mesh" mesh="caster_wheel__0"
+                    material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__1"
+                    material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__2"
+                    material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__3"
+                    material="mat_202_209_238_255" />
+                <geom type="mesh" mesh="caster_wheel__4"
+                    material="mat_000_000_096_255" />
+                <geom type="mesh" mesh="caster_wheel__5"
+                    material="mat_202_209_238_255" />
+            </body>
+            <body name="left_front_wheel" pos="0 0.163 0" quat="0.707107 0 0 0.707107">
+                <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="3.34"
+                    diaginertia="0.0167 0.00904583 0.00904583" />
+                <joint name="left_wheel_joint" pos="0 0 0" axis="1 0 0" />
+                <geom pos="-0.071 0 0" quat="1 0 0 0" type="mesh" mesh="front_wheel__0"
+                    material="mat_202_209_238_255" />
+                <geom pos="-0.071 0 0" quat="1 0 0 0" type="mesh" mesh="front_wheel__1"
+                    material="front_hubcap_material" />
+                <geom pos="-0.071 0 0" quat="1 0 0 0" type="mesh" contype="0"
+                    conaffinity="0" mesh="front_wheel__2"
+                    material="front_axlecap_material" />
+            </body>
+            <body name="right_front_wheel" pos="0 -0.163 0" quat="0.707107 0 0 0.707107">
+                <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="3.34"
+                    diaginertia="0.0167 0.00904583 0.00904583" />
+                <joint name="right_wheel_joint" pos="0 0 0" axis="1 0 0" />
+                <geom pos="0.071 0 0" quat="0 0 -1 0" type="mesh" mesh="front_wheel__0"
+                    material="mat_202_209_238_255" />
+                <geom pos="0.071 0 0" quat="0 0 -1 0" type="mesh" mesh="front_wheel__1"
+                    material="front_hubcap_material" />
+                <geom pos="0.071 0 0" quat="0 0 -1 0" type="mesh" contype="0"
+                    conaffinity="0" mesh="front_wheel__2"
+                    material="front_axlecap_material" />
+            </body>
+            <body name="sonar_0" pos="0.01 -0.14 0.15" quat="0.707107 0 0 -0.707107">
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__0"
+                    material="mat_000_000_128_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__1"
+                    material="mat_170_178_196_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__2"
+                    material="mat_035_075_191_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__3"
+                    material="mat_018_018_018_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__4"
+                    material="mat_228_233_237_255" />
+            </body>
+            <body name="sonar_1" pos="0.08 -0.07 0.15" quat="0.923956 0 0 0.382499">
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__0"
+                    material="mat_000_000_128_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__1"
+                    material="mat_170_178_196_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__2"
+                    material="mat_035_075_191_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__3"
+                    material="mat_018_018_018_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__4"
+                    material="mat_228_233_237_255" />
+            </body>
+            <body name="sonar_2" pos="0.08 -0.01 0.15" quat="0.923956 0 0 -0.382499">
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__0"
+                    material="mat_000_000_128_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__1"
+                    material="mat_170_178_196_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__2"
+                    material="mat_035_075_191_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__3"
+                    material="mat_018_018_018_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__4"
+                    material="mat_228_233_237_255" />
+            </body>
+            <body name="sonar_3" pos="0.08 0.04 0.15">
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__0"
+                    material="mat_000_000_128_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__1"
+                    material="mat_170_178_196_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__2"
+                    material="mat_035_075_191_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__3"
+                    material="mat_018_018_018_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__4"
+                    material="mat_228_233_237_255" />
+            </body>
+            <body name="sonar_4" pos="0.01 0.14 0.15" quat="0.707107 0 0 0.707107">
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__0"
+                    material="mat_000_000_128_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__1"
+                    material="mat_170_178_196_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__2"
+                    material="mat_035_075_191_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__3"
+                    material="mat_018_018_018_255" />
+                <geom pos="-0.006 0 0" quat="0.5 0.5 0.5 0.5" type="mesh" mesh="sonar_hc-sr04__4"
+                    material="mat_228_233_237_255" />
+            </body>
+        </body>
+    </worldbody>
+</mujoco>
