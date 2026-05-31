@@ -66,3 +66,57 @@ class ClosedLoopController:
         w = max(-self.TURN_RATE_MAX, min(self.TURN_RATE_MAX, self.KP_YAW * yaw_err))
         v = self.FORWARD_SPEED if abs(yaw_err) < self.YAW_BLOCK_RAD else 0.0
         return magni_sim.cmd_vel_to_wheels(v, w)
+
+
+class FollowController:
+    """Follow a moving mocap body (e.g. a walking human).
+
+    Aims at the target every step and drives forward, ramping speed down as
+    the target gets close so the robot doesn't ram into it. Runs forever in
+    interactive mode (`duration=None`) or for a fixed time when recording.
+    """
+
+    KP_YAW = 4.0
+    FORWARD_SPEED = 0.4
+    TURN_RATE_MAX = 2.0
+    FOLLOW_DIST = 0.8                # don't get closer than this (m)
+    SLOW_DIST = 1.5                  # below this, ramp speed linearly down
+    YAW_BLOCK_RAD = math.radians(45)
+
+    def __init__(self, target_body: str, duration: float | None = None,
+                 settle_time: float = 1.0):
+        self.target_body = target_body
+        self.duration = duration
+        self.settle_time = settle_time
+        self.settle_until: float | None = None
+        self._target_mocap_id: int | None = None
+
+    def __call__(self, model, data):
+        if self.duration is not None and data.time >= self.duration:
+            if self.settle_until is None:
+                self.settle_until = data.time + self.settle_time
+            if data.time >= self.settle_until:
+                return None
+            return magni_sim.cmd_vel_to_wheels(0.0, 0.0)
+
+        if self._target_mocap_id is None:
+            self._target_mocap_id = magni_sim.mocap_index(model, self.target_body)
+
+        tx, ty = data.mocap_pos[self._target_mocap_id][:2]
+        dx = tx - data.qpos[0]
+        dy = ty - data.qpos[1]
+        dist = math.hypot(dx, dy)
+
+        if dist < self.FOLLOW_DIST:
+            v = 0.0
+        elif dist < self.SLOW_DIST:
+            v = self.FORWARD_SPEED * (dist - self.FOLLOW_DIST) / (self.SLOW_DIST - self.FOLLOW_DIST)
+        else:
+            v = self.FORWARD_SPEED
+
+        target_heading = math.atan2(dy, dx)
+        yaw_err = _wrap(target_heading - magni_sim.base_yaw(data.qpos))
+        w = max(-self.TURN_RATE_MAX, min(self.TURN_RATE_MAX, self.KP_YAW * yaw_err))
+        if abs(yaw_err) > self.YAW_BLOCK_RAD:
+            v = 0.0
+        return magni_sim.cmd_vel_to_wheels(v, w)

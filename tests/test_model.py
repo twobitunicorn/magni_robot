@@ -70,3 +70,25 @@ def test_cmd_vel_pure_turn():
     l, r = magni_sim.cmd_vel_to_wheels(0.0, 1.0)
     assert l < 0 and r > 0
     assert math.isclose(l, -r)
+
+
+def test_follow_controller_chases_target():
+    """Robot should close on human_c within ~5 s."""
+    from controllers import FollowController
+    model, data = magni_sim.load()
+    mocap_ids = magni_sim.human_ids(model)
+    ctrl = FollowController(target_body="human_c")
+    initial_dist = None
+    for _ in range(2500):  # 5 s
+        c = ctrl(model, data)
+        assert c is not None  # no duration set -> never returns None
+        data.ctrl[:] = c
+        magni_sim.update_humans(model, data, mocap_ids)
+        mujoco.mj_step(model, data)
+        if initial_dist is None:
+            tx, ty = data.mocap_pos[mocap_ids["human_c"]][:2]
+            initial_dist = math.hypot(tx - data.qpos[0], ty - data.qpos[1])
+    tx, ty = data.mocap_pos[mocap_ids["human_c"]][:2]
+    final_dist = math.hypot(tx - data.qpos[0], ty - data.qpos[1])
+    assert final_dist < initial_dist  # got closer
+    assert final_dist < 1.8           # within follow / slow band
